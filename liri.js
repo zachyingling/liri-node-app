@@ -17,25 +17,18 @@ function concertFinder() {
         "/events?app_id=codingbootcamp"
     )
     .then(function(response) {
-      console.log(response.data);
+      if (response.data.length === 0) {
+        console.log(
+          "Your artist was found but it looks like they aren't going on tour anymore unfortunately."
+        );
+      } else {
+        console.log(response.data);
+      }
     })
     .catch(function(error) {
-      console.log("This artist wasn't found.");
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log(error.response.data);
-        console.log(error.response.status);
-        console.log(error.response.headers);
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an object that comes back with details pertaining to the error that occurred.
-        console.log(error.request);
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log("Error", error.message);
-      }
-      console.log(error.config);
+      console.log(
+        "This artist wasn't found. Check your spelling and if it's a two word artist put it in \"\"s or instead of spaces put + signs."
+      );
     });
 }
 
@@ -57,9 +50,13 @@ function spotifyCall(querySearch) {
   ) {
     if (err) {
       return console.log("Error occurred: " + err);
+    } else if (data.tracks.total === 0) {
+      console.log(
+        "The track wasn't found. Check your spelling and if it's a two word song put it in \"\"s or instead of spaces put + signs."
+      );
+    } else {
+      console.log(data);
     }
-
-    console.log(data);
   });
 }
 
