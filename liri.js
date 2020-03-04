@@ -9,6 +9,10 @@ let firstParameter = process.argv[2];
 
 function concertFinder() {
   let artist = process.argv[3];
+  if (artist === undefined || artist === "") {
+    console.log("No artist entered. Defaulting to Billie Eilish.");
+    artist = "billie eilish";
+  }
 
   axios
     .get(
@@ -84,6 +88,10 @@ function movieFinder() {
   // Format on node of movie should be in "" or the spaces of the movie need to be plus signs
   // Finish console loging the necessary information
   let movieName = process.argv[3];
+  if (movieName === undefined || movieName === "") {
+    console.log("No movie entered. Defaulting to frozen.");
+    movieName = "frozen";
+  }
 
   axios
     .get(
