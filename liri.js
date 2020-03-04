@@ -26,16 +26,14 @@ function concertFinder() {
           "Your artist was found but it looks like they aren't going on tour anymore unfortunately."
         );
       } else {
-        // console.log(response.data);
         for (let i = 0; i < response.data.length; i++) {
           console.log("Event " + (i + 1) + ": ");
-          console.log(response.data[i].venue.name);
+          console.log("Venue Name: " + response.data[i].venue.name);
           console.log(
-            response.data[i].venue.city +
-              ", " +
-              response.data[i].venue.region +
-              "\n"
+            response.data[i].venue.city + ", " + response.data[i].venue.region
           );
+          let newDate = moment(response.data[i].datetime).format("MM/DD/YYYY");
+          console.log("Date of Event: " + newDate + "\n\n");
         }
       }
     })
