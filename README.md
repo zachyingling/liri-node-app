@@ -6,7 +6,7 @@ This application will be able to give the user concert's for the artist given fr
 
 ### Video Link
 
-[Video](www.youtube.com)
+[Video](https://www.youtube.com/watch?v=WWwg0JjafIU)
 
 ## Instructions
 
