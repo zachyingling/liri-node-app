@@ -8,7 +8,7 @@ const fs = require("fs");
 let firstParameter = process.argv[2];
 
 function concertFinder() {
-  let artist = process.argv[3];
+  let artist = process.argv.splice(3).join(" ");
   if (artist === undefined || artist === "") {
     console.log("No artist entered. Defaulting to Billie Eilish.");
     artist = "billie eilish";
@@ -39,13 +39,13 @@ function concertFinder() {
     })
     .catch(function(error) {
       console.log(
-        "This artist wasn't found. Check your spelling and if it's a two word artist put it in \"\"s or instead of spaces put + signs."
+        "This artist wasn't found. Check your spelling of the artist/band."
       );
     });
 }
 
 function spotifySongFinder() {
-  let querySearch = process.argv[3];
+  let querySearch = process.argv.splice(3).join(" ");
 
   if (querySearch === "" || querySearch === undefined) {
     spotifyCall("The Sign");
@@ -63,9 +63,7 @@ function spotifyCall(querySearch) {
     if (err) {
       return console.log("Error occurred: " + err);
     } else if (data.tracks.total === 0) {
-      console.log(
-        "The track wasn't found. Check your spelling and if it's a two word song put it in \"\"s or instead of spaces put + signs."
-      );
+      console.log("The track wasn't found. Check your spelling of the track.");
     } else {
       let artistVariable = "";
       for (let i = 0; i < data.tracks.items[0].artists.length; i++) {
@@ -85,7 +83,7 @@ function spotifyCall(querySearch) {
 function movieFinder() {
   // Format on node of movie should be in "" or the spaces of the movie need to be plus signs
   // Finish console loging the necessary information
-  let movieName = process.argv[3];
+  let movieName = process.argv.splice(3).join(" ");
   if (movieName === undefined || movieName === "") {
     console.log("No movie entered. Defaulting to frozen.");
     movieName = "frozen";
